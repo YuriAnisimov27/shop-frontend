@@ -1,49 +1,62 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
-import Container from "@material-ui/core/Container";
-import Header from "components/MainLayout/components/Header";
+import Container from '@material-ui/core/Container';
+import Header from 'components/MainLayout/components/Header';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        My Store
+      <Link color='inherit' href='https://material-ui.com/'>
+        Ducati Store
       </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
+      {new Date().getFullYear()}.
     </Typography>
   );
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
+  header: {
+    background:
+      'linear-gradient(to right, green 0%, green 33%, white 33%, white 66%, red 66%, red 100%);',
+  },
   container: {
     paddingBottom: theme.spacing(8),
   },
   footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
+    padding: theme.spacing(2),
+    background:
+      'linear-gradient(to right, green 0%, green 33%, white 33%, white 66%, red 66%, red 100%);',
+    height: 80,
   },
 }));
 
-const MainLayout: React.FC = ({children}) => {
+interface IMainLayout {
+  children?: React.ReactNode;
+}
+
+const MainLayout: FunctionComponent<IMainLayout> = ({ children }) => {
   const classes = useStyles();
 
   return (
     <>
-      <Header/>
+      <Header />
       <main>
-        <Container className={classes.container} maxWidth="md">
+        <Container className={classes.container} maxWidth='md'>
           {children!}
         </Container>
       </main>
       <footer className={classes.footer}>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+        <Typography
+          variant='subtitle1'
+          align='center'
+          color='textSecondary'
+          component='p'>
           Thank you for your purchase!
         </Typography>
-        <Copyright/>
+        <Copyright />
       </footer>
     </>
   );
