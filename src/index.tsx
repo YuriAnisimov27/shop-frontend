@@ -9,8 +9,8 @@ import axios from 'axios';
 import * as serviceWorker from './serviceWorker';
 
 axios.interceptors.response.use(
-  response => response,
-  error => {
+  (response) => response,
+  (error) => {
     if (error?.response?.status === 400) {
       alert(error.response.data?.data);
     }

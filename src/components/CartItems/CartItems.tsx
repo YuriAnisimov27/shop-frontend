@@ -8,7 +8,7 @@ import { CartItem } from 'models/CartItem';
 import { formatAsPrice } from 'utils/utils';
 import AddProductToCart from 'components/AddProductToCart/AddProductToCart';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   listItem: {
     padding: theme.spacing(1, 0),
   },

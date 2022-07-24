@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   layout: {
     width: 'auto',
     marginLeft: theme.spacing(2),

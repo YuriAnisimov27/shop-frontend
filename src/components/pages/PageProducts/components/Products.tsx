@@ -10,10 +10,10 @@ import { Product } from 'models/Product';
 import { formatAsPrice } from 'utils/utils';
 import AddProductToCart from 'components/AddProductToCart/AddProductToCart';
 import axios from 'axios';
-// import API_PATHS from "constants/apiPaths";
+import API_PATHS from 'constants/apiPaths';
 // import productList from './productList.json';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     height: '100%',
     display: 'flex',
@@ -40,11 +40,7 @@ export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://hzpkuynm2m.execute-api.eu-west-1.amazonaws.com/dev/products`
-      )
-      .then(res => setProducts(res.data));
+    axios.get(API_PATHS.product).then((res) => setProducts(res.data));
     setProducts([]);
   }, []);
 
@@ -56,7 +52,7 @@ export default function Products() {
             <CardMedia
               className={classes.cardMedia}
               // image={`https://source.unsplash.com/random?sig=${index}`}
-              image={product.imgUrl}
+              image={product.imgurl}
               title='Image title'
             />
             <CardContent className={classes.cardContent}>
