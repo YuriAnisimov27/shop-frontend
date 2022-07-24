@@ -73,7 +73,8 @@ export default function Header() {
               aria-controls='menu-appbar'
               aria-haspopup='true'
               onClick={handleMenu}
-              color='inherit'>
+              color='inherit'
+            >
               <AccountCircle />
             </IconButton>
             <Menu
@@ -89,17 +90,20 @@ export default function Header() {
                 horizontal: 'right',
               }}
               open={open}
-              onClose={handleClose}>
+              onClose={handleClose}
+            >
               <MenuItem
                 component={Link}
                 to='/admin/orders'
-                onClick={handleClose}>
+                onClick={handleClose}
+              >
                 Manage orders
               </MenuItem>
               <MenuItem
                 component={Link}
                 to='/admin/products'
-                onClick={handleClose}>
+                onClick={handleClose}
+              >
                 Manage products
               </MenuItem>
             </Menu>

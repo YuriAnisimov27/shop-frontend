@@ -15,7 +15,7 @@ type AddProductToCartProps = {
 export default function AddProductToCart({ product }: AddProductToCartProps) {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
-  const cartItem = cartItems.find(i => i.product.id === product.id);
+  const cartItem = cartItems.find((i) => i.product.id === product.id);
 
   return (
     <>

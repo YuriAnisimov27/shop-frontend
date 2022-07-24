@@ -17,7 +17,7 @@ import axios from 'axios';
 import API_PATHS from 'constants/apiPaths';
 import { AddressSchema, OrderSchema } from 'models/Order';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   stepper: {
     padding: theme.spacing(3, 0, 5),
   },
@@ -116,7 +116,7 @@ export default function PageCart() {
     setActiveStep(activeStep + 1);
     if (activeStep === 2) {
       const formattedValues = OrderSchema.cast({
-        items: cartItems.map(i => ({
+        items: cartItems.map((i) => ({
           productId: i.product.id,
           count: i.count,
         })),
@@ -139,7 +139,7 @@ export default function PageCart() {
         Checkout
       </Typography>
       <Stepper activeStep={activeStep} className={classes.stepper}>
-        {steps.map(label => (
+        {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
@@ -151,7 +151,8 @@ export default function PageCart() {
           initialValues={initialAddressValues}
           validationSchema={AddressSchema}
           isInitialValid={false}
-          onSubmit={() => undefined}>
+          onSubmit={() => undefined}
+        >
           {(props: FormikProps<FormikValues>) => {
             const { values, isValid } = props;
             setAddress(values);
@@ -183,7 +184,8 @@ export default function PageCart() {
                 color='primary'
                 onClick={handleNext}
                 className={classes.button}
-                disabled={activeStep === 1 && !isFormValid}>
+                disabled={activeStep === 1 && !isFormValid}
+              >
                 {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
               </Button>
             )}

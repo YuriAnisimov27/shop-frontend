@@ -6,7 +6,7 @@ import CartItems from 'components/CartItems/CartItems';
 import { FormikValues } from 'formik';
 import { CartItem } from 'models/CartItem';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   title: {
     marginTop: theme.spacing(2),
   },

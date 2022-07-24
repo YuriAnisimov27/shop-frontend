@@ -29,7 +29,7 @@ const Form = (props: FormikProps<FormikValues>) => {
     // setTouched,
     // isButtonAddAndRedirect,
     // setShouldRedirect,
-    // submitForm,
+    submitForm,
     // onGetCitizen,
     // shouldConfirmLeave,
   } = props;
@@ -78,13 +78,24 @@ const Form = (props: FormikProps<FormikValues>) => {
             required
           />
         </Grid>
+        {/* <Grid item xs={12} sm={4}>
+          <Field
+            component={TextField}
+            name='imgurl'
+            label='Image URL'
+            fullWidth
+            autoComplete='off'
+          />
+        </Grid> */}
         <Grid item container xs={12} justify='space-between'>
           <Button color='primary'>Cancel</Button>
           <Button
             type='submit'
             variant='contained'
             color='primary'
-            disabled={!dirty || isSubmitting || !isValid}>
+            disabled={!dirty || isSubmitting || !isValid}
+            onClick={submitForm}
+          >
             Save Product
           </Button>
         </Grid>
@@ -107,8 +118,9 @@ export default function PageProductForm() {
       ? { ...ProductSchema.cast(formattedValues), id }
       : formattedValues;
     axios
-      .put(`${API_PATHS.bff}/product`, productToSave)
-      .then(() => history.push('/admin/products'));
+      // .put(`${API_PATHS.bff}/product`, productToSave)
+      .post(`${API_PATHS.product}`, productToSave);
+    // .then(() => history.push('/admin/products'));
   };
 
   useEffect(() => {
@@ -116,7 +128,7 @@ export default function PageProductForm() {
       setIsLoading(false);
       return;
     }
-    axios.get(`${API_PATHS.bff}/product/${id}`).then(res => {
+    axios.get(`${API_PATHS.bff}/product/${id}`).then((res) => {
       setProduct(res.data);
       setIsLoading(false);
     });
@@ -132,7 +144,8 @@ export default function PageProductForm() {
       <Formik
         initialValues={product || emptyValues}
         validationSchema={ProductSchema}
-        onSubmit={onSubmit}>
+        onSubmit={onSubmit}
+      >
         {(props: FormikProps<FormikValues>) => <Form {...props} />}
       </Formik>
     </PaperLayout>

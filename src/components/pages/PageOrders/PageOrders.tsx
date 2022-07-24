@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Orders from 'components/pages/PageOrders/components/Orders';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   content: {
     padding: theme.spacing(3, 0, 3),
   },

@@ -19,7 +19,7 @@ export const cartSlice = createSlice({
   reducers: {
     updateFromApi: (
       state,
-      { payload: { items } }: PayloadAction<CartState>,
+      { payload: { items } }: PayloadAction<CartState>
     ) => ({
       items: [...items],
     }),
@@ -27,7 +27,7 @@ export const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<Product>) => {
       const { items } = state;
       const { payload: product } = action;
-      const existingItem = items.find(i => i.product.id === product.id);
+      const existingItem = items.find((i) => i.product.id === product.id);
       if (existingItem) {
         existingItem.count += 1;
         return;
@@ -38,51 +38,53 @@ export const cartSlice = createSlice({
     removeFromCart: (state, action: PayloadAction<Product>) => {
       const { items } = state;
       const { payload: product } = action;
-      const existingItem = items.find(i => i.product.id === product.id);
+      const existingItem = items.find((i) => i.product.id === product.id);
       if (!existingItem) return;
       if (existingItem.count > 1) {
         existingItem.count -= 1;
         return;
       }
-      state.items = items.filter(i => i.product.id !== product.id);
+      state.items = items.filter((i) => i.product.id !== product.id);
     },
-    clearCart: state => {
+    clearCart: (state) => {
       state.items = [];
     },
   },
 });
 
-export const addToCart = (product: Product) => async (dispatch: any, getState: any) => {
-  dispatch(cartSlice.actions.addToCart(product));
-  const {
-    cart: { items },
-  } = getState();
-  await axios.put(
-    `${API_PATHS.cart}/profile/cart`,
-    { items },
-    {
-      headers: {
-        Authorization: `Basic ${localStorage.getItem('authorization_token')}`,
-      },
-    },
-  );
-};
+export const addToCart =
+  (product: Product) => async (dispatch: any, getState: any) => {
+    dispatch(cartSlice.actions.addToCart(product));
+    const {
+      cart: { items },
+    } = getState();
+    await axios.put(
+      `${API_PATHS.cart}/profile/cart`,
+      { items },
+      {
+        headers: {
+          Authorization: `Basic ${localStorage.getItem('authorization_token')}`,
+        },
+      }
+    );
+  };
 
-export const removeFromCart = (product: Product) => async (dispatch: any, getState: any) => {
-  dispatch(cartSlice.actions.removeFromCart(product));
-  const {
-    cart: { items },
-  } = getState();
-  await axios.put(
-    `${API_PATHS.cart}/profile/cart`,
-    { items },
-    {
-      headers: {
-        Authorization: `Basic ${localStorage.getItem('authorization_token')}`,
-      },
-    },
-  );
-};
+export const removeFromCart =
+  (product: Product) => async (dispatch: any, getState: any) => {
+    dispatch(cartSlice.actions.removeFromCart(product));
+    const {
+      cart: { items },
+    } = getState();
+    await axios.put(
+      `${API_PATHS.cart}/profile/cart`,
+      { items },
+      {
+        headers: {
+          Authorization: `Basic ${localStorage.getItem('authorization_token')}`,
+        },
+      }
+    );
+  };
 
 export const clearCart = () => async (dispatch: any, getState: any) => {
   dispatch(cartSlice.actions.clearCart());
@@ -96,7 +98,7 @@ export const clearCart = () => async (dispatch: any, getState: any) => {
       headers: {
         Authorization: `Basic ${localStorage.getItem('authorization_token')}`,
       },
-    },
+    }
   );
 };
 

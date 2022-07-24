@@ -20,7 +20,8 @@ function App() {
             </Route>
             <Route
               exact
-              path={['/admin/product-form/:id', '/admin/product-form']}>
+              path={['/admin/product-form/:id', '/admin/product-form']}
+            >
               <PageProductForm />
             </Route>
             <Route exact path='/cart'>
