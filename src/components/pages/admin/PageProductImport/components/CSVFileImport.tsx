@@ -30,7 +30,6 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
   };
 
   const uploadFile = async (e: any) => {
-    // Get the presigned URL
     const response = await axios({
       method: 'GET',
       url,
@@ -39,13 +38,11 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
       },
     });
     console.log('File to upload: ', file.name);
-    console.log('Uploading to: ', response.data);
-    const result = await fetch(response.data, {
+    console.log('Uploading to: ', response.data.signedUrl);
+    const result = await fetch(response.data.signedUrl, {
       method: 'PUT',
       body: file,
-      mode: 'cors',
       headers: {
-        'Access-Control-Allow-Origin': '*',
         'Content-Type': 'text/csv',
       },
     });
