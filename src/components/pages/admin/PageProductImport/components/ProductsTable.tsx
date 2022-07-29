@@ -16,12 +16,14 @@ export default function ProductsTable() {
   const [products, setProducts] = useState<any>([]);
 
   useEffect(() => {
-    axios.get(`${API_PATHS.bff}/product`).then(res => setProducts(res.data));
+    axios.get(`${API_PATHS.bff}/product`).then((res) => setProducts(res.data));
   }, []);
 
   const onDelete = (id: string) => {
     axios.delete(`${API_PATHS.bff}/product/${id}`).then(() => {
-      axios.get(`${API_PATHS.bff}/product`).then(res => setProducts(res.data));
+      axios
+        .get(`${API_PATHS.bff}/product`)
+        .then((res) => setProducts(res.data));
     });
   };
 
@@ -53,13 +55,15 @@ export default function ProductsTable() {
                   size='small'
                   color='primary'
                   component={Link}
-                  to={`/admin/product-form/${product.id}`}>
+                  to={`/admin/product-form/${product.id}`}
+                >
                   Manage
                 </Button>
                 <Button
                   size='small'
                   color='secondary'
-                  onClick={() => onDelete(product.id)}>
+                  onClick={() => onDelete(product.id)}
+                >
                   Delete
                 </Button>
               </TableCell>

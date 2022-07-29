@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   content: {
     padding: theme.spacing(3, 0, 3),
   },
@@ -28,7 +28,8 @@ export default function PageProductImport() {
           color='primary'
           variant='contained'
           component={Link}
-          to='/admin/product-form/'>
+          to='/admin/product-form/'
+        >
           create product
         </Button>
       </Box>

@@ -56,16 +56,17 @@ const Form = (props: FormikProps<FormikValues>) => {
   // }
 
   return (
-    <form onSubmit={handleSubmit} autoComplete='off'>
+    <form onSubmit={handleSubmit} autoComplete="off">
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Field
             component={TextField}
-            name='status'
-            label='Status'
+            name="status"
+            label="Status"
             select
             fullWidth
-            helperText={helperText}>
+            helperText={helperText}
+          >
             {ORDER_STATUS_FLOW.map((status, index) => (
               <MenuItem key={index} value={status}>
                 {status}
@@ -76,19 +77,20 @@ const Form = (props: FormikProps<FormikValues>) => {
         <Grid item xs={12}>
           <Field
             component={TextField}
-            name='comment'
-            label='Comment'
+            name="comment"
+            label="Comment"
             fullWidth
-            autoComplete='off'
+            autoComplete="off"
             multiline
           />
         </Grid>
-        <Grid item container xs={12} justify='space-between'>
+        <Grid item container xs={12} justify="space-between">
           <Button
-            type='submit'
-            variant='contained'
-            color='primary'
-            disabled={!dirty || isSubmitting || !isValid}>
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={!dirty || isSubmitting || !isValid}
+          >
             Change status
           </Button>
         </Grid>
@@ -136,43 +138,44 @@ export default function PageOrder() {
 
   return (
     <PaperLayout>
-      <Typography component='h1' variant='h4' align='center'>
+      <Typography component="h1" variant="h4" align="center">
         Manage order
       </Typography>
       <ReviewOrder address={order.address} items={cartItems} />
-      <Typography variant='h6'>Status:</Typography>
-      <Typography variant='h6' color='primary'>
+      <Typography variant="h6">Status:</Typography>
+      <Typography variant="h6" color="primary">
         {lastStatusItem?.status.toUpperCase()}
       </Typography>
-      <Typography variant='h6'>Change status:</Typography>
+      <Typography variant="h6">Change status:</Typography>
       <Formik
         initialValues={{ status: lastStatusItem.status, comment: '' }}
         enableReinitialize
-        onSubmit={onChangeStatus}>
+        onSubmit={onChangeStatus}
+      >
         {/* 
   // @ts-ignore */}
         {(props: FormikProps<FormikValues>) => <Form {...props} />}
       </Formik>
-      <Typography variant='h6'>Status history:</Typography>
+      <Typography variant="h6">Status history:</Typography>
       <TableContainer>
-        <Table aria-label='simple table'>
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Status</TableCell>
-              <TableCell align='right'>Date and Time</TableCell>
-              <TableCell align='right'>Comment</TableCell>
+              <TableCell align="right">Date and Time</TableCell>
+              <TableCell align="right">Comment</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {statusHistory.map((statusHistoryItem: any) => (
               <TableRow key={order.id}>
-                <TableCell component='th' scope='row'>
+                <TableCell component="th" scope="row">
                   {statusHistoryItem.status.toUpperCase()}
                 </TableCell>
-                <TableCell align='right'>
+                <TableCell align="right">
                   {new Date(statusHistoryItem.timestamp).toString()}
                 </TableCell>
-                <TableCell align='right'>{statusHistoryItem.comment}</TableCell>
+                <TableCell align="right">{statusHistoryItem.comment}</TableCell>
               </TableRow>
             ))}
           </TableBody>

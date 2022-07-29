@@ -15,12 +15,12 @@ export default function Orders() {
   const [orders, setOrders] = useState<any>([]);
 
   useEffect(() => {
-    axios.get(`${API_PATHS.order}/order`).then(res => setOrders(res.data));
+    axios.get(`${API_PATHS.order}/order`).then((res) => setOrders(res.data));
   }, []);
 
   const onDelete = (id: string) => {
     axios.delete(`${API_PATHS.order}/order/${id}`).then(() => {
-      axios.get(`${API_PATHS.order}/order`).then(res => setOrders(res.data));
+      axios.get(`${API_PATHS.order}/order`).then((res) => setOrders(res.data));
     });
   };
 
@@ -54,13 +54,15 @@ export default function Orders() {
                   size='small'
                   color='primary'
                   component={Link}
-                  to={`/admin/order/${order.id}`}>
+                  to={`/admin/order/${order.id}`}
+                >
                   Manage
                 </Button>
                 <Button
                   size='small'
                   color='secondary'
-                  onClick={() => onDelete(order.id)}>
+                  onClick={() => onDelete(order.id)}
+                >
                   Delete
                 </Button>
               </TableCell>

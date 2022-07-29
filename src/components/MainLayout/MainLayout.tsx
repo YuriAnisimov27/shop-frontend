@@ -17,7 +17,7 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   header: {
     background:
       'linear-gradient(to right, green 0%, green 33%, white 33%, white 66%, red 66%, red 100%);',
@@ -53,7 +53,8 @@ const MainLayout: FunctionComponent<IMainLayout> = ({ children }) => {
           variant='subtitle1'
           align='center'
           color='textSecondary'
-          component='p'>
+          component='p'
+        >
           Thank you for your purchase!
         </Typography>
         <Copyright />

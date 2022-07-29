@@ -35,7 +35,8 @@ export default function Cart() {
       aria-label='show 4 new mails'
       color='inherit'
       component={Link}
-      to='/cart'>
+      to='/cart'
+    >
       <Badge badgeContent={badgeContent} color='secondary'>
         <CartIcon />
       </Badge>
